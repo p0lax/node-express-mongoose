@@ -4,7 +4,7 @@
  */
 
 module.exports = {
-  db: process.env.MONGOLAB_URI,
+  db: process.env.MONGO_URL,
   facebook: {
     clientID: 'APP_ID',
     clientSecret: 'SECRET',
