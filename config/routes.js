@@ -3,6 +3,7 @@
  * Module dependencies.
  */
 
+var users = require('users');
 var mongoose = require('mongoose');
 var home = require('../app/controllers/home');
 
@@ -11,6 +12,17 @@ var home = require('../app/controllers/home');
  */
 
 module.exports = function (app, passport) {
+
+  // user routes
+  app.get('/login', users.login);
+  app.get('/signup', users.signup);
+  app.get('/logout', users.logout);
+  app.post('/users', users.create);
+  app.post('/users/session',
+      passport.authenticate('local', {
+        failureRedirect: '/login',
+        failureFlash: 'Invalid email or password.'
+      }), users.session);
 
   app.get('/', home.index);
 
