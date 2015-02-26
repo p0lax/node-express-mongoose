@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
 var local = require('./passport/local');
+var vkontakte = require('./passport/vkontakte');
 
 /**
  * Expose
@@ -26,4 +27,5 @@ module.exports = function (passport, config) {
 
   // use these strategies
   passport.use(local);
+  passport.use(vkontakte);
 };

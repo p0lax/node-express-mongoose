@@ -5,10 +5,10 @@
 
 module.exports = {
   db: 'mongodb://127.0.0.1:27017/child',
-  facebook: {
-    clientID: 'APP_ID',
-    clientSecret: 'SECRET',
-    callbackURL: 'http://localhost:3000/auth/facebook/callback',
+  vkontakte: {
+    clientID: '4519557',
+    clientSecret: '0iSESz4HFMW64eYnns0k',
+    callbackURL: 'http://localhost:3000/auth/vkontakte/callback',
     scope: [
       'email',
       'user_about_me',

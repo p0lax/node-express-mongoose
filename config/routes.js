@@ -24,6 +24,16 @@ module.exports = function (app, passport) {
         failureFlash: 'Invalid email or password.'
       }), users.session);
 
+  app.get('/auth/vkontakte',
+      passport.authenticate('vkontakte', {
+        scope: [ 'email', 'user_about_me'],
+        failureRedirect: '/login'
+      }), users.signin);
+  app.get('/auth/vkontakte/callback',
+      passport.authenticate('vkontakte', {
+        failureRedirect: '/login'
+      }), users.authCallback);
+
   app.get('/', home.index);
 
   /**
