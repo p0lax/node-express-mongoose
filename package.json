@@ -37,10 +37,15 @@
     "winston": "^0.8.0"
   },
   "devDependencies": {
-    "nodemon": "latest",
+    "css-loader": "^0.12.1",
+    "less-loader": "^2.2.0",
     "mocha": "latest",
+    "node-libs-browser": "^0.5.0",
+    "nodemon": "latest",
     "should": "latest",
-    "supertest": "latest"
+    "style-loader": "^0.12.2",
+    "supertest": "latest",
+    "webpack": "^1.9.6"
   },
   "repository": {
     "type": "git",
