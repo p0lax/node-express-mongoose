@@ -1,2 +1,2 @@
-require("style!css!less!../less/app.less");
+require('style!css!less!../less/app.less');
 var test = 1;
