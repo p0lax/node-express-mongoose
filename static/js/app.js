@@ -1,2 +1,5 @@
-require('style!css!less!../less/app.less');
-var test = 1;
+require('../less/app.less');
+var Test = require('./Test.js');
+
+var test = new Test('Jason');
+test.show()

@@ -1,21 +1,48 @@
-var path = require("path");
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-module.exports = {
+/**
+ * For uglify webpack --optimize-minimize
+ * @type {webpack|exports}
+ */
+
+var webpack = require("webpack");
+    path = require("path"),
+    ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+var options = options || {};
+var config = {
     context: path.join(__dirname, "static"),
-    entry: ["./js/app.js", "./js/style.js"],
-    output: {
-        path: path.join(__dirname, "dist"),
-        filename: "bundle[hash].js"
+    entry: {
+        app: "./js/app.js"
     },
-    loaders: [
-        {
-            test: /\.less$/,
-            loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
-        }
-    ],
+    output: {
+        path: "static/build",
+        filename: '[name].js'
+    },
+    module: {
+        loaders: [
+            {
+                test: /\.jsx?$/,
+                exclude: /(node_modules|bower_components)/,
+                loader: 'babel'
+            },
+            {
+                test: /\.less$/,
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
+            }
+        ]
+    },
     plugins: [
-        new ExtractTextPlugin("style.css", {
-            allChunks: true
-        })
-    ]
+        new webpack.optimize.DedupePlugin(),
+        new ExtractTextPlugin("style.css")
+    ],
+    devServer: {
+        contentBase: "static/",
+        info: false, //  --no-info option
+        hot: true,
+        inline: true
+    }
+};
+
+if (options.uglify) {
+    config.plugins.push(new webpack.optimize.UglifyJsPlugin());
 }
+module.exports = config;
