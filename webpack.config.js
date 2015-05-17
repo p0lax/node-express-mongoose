@@ -2,10 +2,10 @@
  * For uglify webpack --optimize-minimize
  * @type {webpack|exports}
  */
-
 var webpack = require("webpack");
     path = require("path"),
-    ExtractTextPlugin = require('extract-text-webpack-plugin');
+    ExtractTextPlugin = require('extract-text-webpack-plugin'),
+    WebpackDevServer = require('webpack-dev-server');
 
 var options = options || {};
 var config = {
@@ -14,7 +14,7 @@ var config = {
         app: "./js/app.js"
     },
     output: {
-        path: "static/build",
+        path: path.join(__dirname, "static/build"),
         filename: '[name].js'
     },
     module: {
@@ -27,7 +27,8 @@ var config = {
             {
                 test: /\.less$/,
                 loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
-            }
+            },
+            { test: /\.(png|jpeg)$/, loader: 'url-loader?limit=20000' }
         ]
     },
     plugins: [
@@ -35,7 +36,7 @@ var config = {
         new ExtractTextPlugin("style.css")
     ],
     devServer: {
-        contentBase: "static/",
+        contentBase: path.join(__dirname, "static"),
         info: false, //  --no-info option
         hot: true,
         inline: true
