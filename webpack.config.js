@@ -14,7 +14,7 @@ var config = {
         app: "./js/app.js"
     },
     output: {
-        path: path.join(__dirname, "static/build"),
+        path: path.join(__dirname, "build"),
         filename: '[name].js'
     },
     module: {
@@ -36,10 +36,11 @@ var config = {
         new ExtractTextPlugin("style.css")
     ],
     devServer: {
-        contentBase: path.join(__dirname, "static"),
+        publicPath: "/build",
         info: false, //  --no-info option
         hot: true,
-        inline: true
+        inline: true,
+        port: 3000
     }
 };
 
